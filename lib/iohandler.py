@@ -62,7 +62,7 @@ def removeline(path, hour, msg):
 
 
 def readconfig(configfile):
-	config = configparser.ConfigParser(allow_no_value=True)
+	config = configparser.ConfigParser(allow_no_value=True, strict=False)
 	config.read(configfile)
 	return config
 
