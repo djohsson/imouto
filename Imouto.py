@@ -99,7 +99,8 @@ class Imouto(irc.bot.SingleServerIRCBot):
 
 		nick = e.source.nick
 		if isinstance(result, list):
-			self.privmsg(nick, " | ".join(result))
+			for s in result:
+				self.privmsg(nick, s)
 		else:
 			self.privmsg(nick, result)
 
