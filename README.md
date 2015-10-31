@@ -8,18 +8,20 @@ files representing the hour of answering.
 For instance:
 
 ```
-<10:34:55> <userA> what is up userB?
+<10:34:55> <userA> what's happening userB?
 <10:35:20> <userB> trying to sleep
+<10:35:20> <botnick> added that!
 ```
 Imouto will then add *"trying to sleep"* to *"answerpath/userB/10.txt"*
 
-If there is one or more answers in the file, imouto will message the channel a randomized answer.
+If there is one or more answers in the file, imouto will message the channel a random line from this file.
 
 
 ```
 <10:34:55> <userA> 	what's happening userB?
 <10:34:55> <botnick> userB is doing this: working on my irc bot
 <10:35:20> <userB> 	trying to sleep
+<10:35:20> <botnick> added that!
 ```
 
 ## Usage
