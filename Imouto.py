@@ -43,7 +43,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 	def on_pubmsg(self, c, e):
 		host = e.source.userhost
 		if not self.regex_check(host, self.ignoredhosts):
-			msg = e.arguments[0].lower()
+			msg = e.arguments[0]
 			self.messageLogic(e, msg)
 
 
@@ -114,16 +114,15 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		host = e.source.userhost
 		nick = e.source.nick
 
-		msg = msg.lower()
-		compquestion = self.question.lower()
+		lowermsg = msg.lower()
 		senderuser = self.hostdict.get(host)
 
 		if not senderuser:
 			senderuser = self.userdict.get(nick)
-		if senderuser and not msg.startswith(compquestion):#splittedmsg[0] != self.question:
+		if senderuser and not lowermsg.startswith(self.question):#splittedmsg[0] != self.question:
 			self.foundanswer(senderuser, msg)
-		elif msg.startswith(compquestion):#splittedmsg[0] == self.question:
-			splittedmsg = msg.split(compquestion, 1)
+		elif lowermsg.startswith(self.question):#splittedmsg[0] == self.question:
+			splittedmsg = lowermsg.split(self.question, 1)
 			target = splittedmsg[1].strip().replace("?", "")
 			self.foundquestion(senderuser, target)
 
@@ -357,7 +356,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		self.config = iohandler.readconfig(self.configpath)
 		self.authedhosts = self.config["Auth"]
 		self.response = self.config["General"]["response"]
-		self.question = self.config["General"]["question"]
+		self.question = self.config["General"]["question"].lower()
 		self.partmessage = self.config["General"]["partmessage"]
 		self.answerpath = self.config["General"]["answerpath"]
 		self.ignoredhosts = self.config["Ignored"]
