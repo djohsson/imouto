@@ -20,6 +20,8 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		self.question = ""
 		selfpartmessage = ""
 		self.answerpath = ""
+		self.verbose = False
+		self.answerreply = ""
 		self.configpath = configpath
 		self.readconfig()
 
@@ -129,7 +131,8 @@ class Imouto(irc.bot.SingleServerIRCBot):
 	def foundanswer(self, senderuser, msg):
 		if senderuser.allowedtoanswer() and len(msg) > 2:
 			hour = datetime.datetime.now().hour
-			senderuser.addanswer(hour, msg)
+			if senderuser.addanswer(hour, msg) and self.verbose:
+				self.privmsg(self.channel, self.answerreply)
 			senderuser.resetmsgtimer()
 
 
@@ -358,6 +361,8 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		self.partmessage = self.config["General"]["partmessage"]
 		self.answerpath = self.config["General"]["answerpath"]
 		self.ignoredhosts = self.config["Ignored"]
+		self.verbose = self.config.getboolean("General", "verbose")
+		self.answerreply = self.config["General"]["answerreply"]
 		hosts = self.config["Hosts"]
 		users = self.config["Users"]
 
