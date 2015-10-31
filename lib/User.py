@@ -7,8 +7,9 @@ class User:
 	import time
 	import lib.iohandler as iohandler
 
-	global timelimit
+	global timelimit, timetoanswer
 	timelimit = 300
+	timetoanswer = 2
 
 
 	def __init__(self, nick, path):
@@ -32,7 +33,8 @@ class User:
 
 
 	def allowedtoanswer(self):
-		return self.msgfound and (time.time() - self.msgtime) < timelimit
+		timepassed = time.time() - self.msgtime
+		return self.msgfound and timepassed < timelimit and timepassed > timetoanswer
 
 
 	def getanswer(self, hour):
