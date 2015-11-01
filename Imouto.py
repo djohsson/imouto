@@ -36,7 +36,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 
 	def on_privmsg(self, c, e):
 		host = e.source.userhost
-		if self.regex_check(host, self.authedhosts):
+		if host in self.authedhosts:
 			self.do_command(e, e.arguments[0])
 
 
