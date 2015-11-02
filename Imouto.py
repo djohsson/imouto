@@ -18,7 +18,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		self.hostdict = {}
 		self.response = ""
 		self.question = ""
-		selfpartmessage = ""
+		self.partmessage = ""
 		self.answerpath = ""
 		self.verbose = False
 		self.answerreply = ""
@@ -107,7 +107,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 			self.privmsg(nick, result)
 
 	def privmsg(self, dest, msg):
-		self.connection.privmsg(dest, msg)	
+		self.connection.privmsg(dest, msg)
 
 
 	def messageLogic(self, e, msg):
@@ -140,7 +140,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
 		if answeruser:
 			if senderuser is not answeruser: #User cannot ask what he/she is doing
 				answeruser.foundmsg()
-			
+
 			answer = answeruser.getanswer(datetime.datetime.now().hour) #It will answer though
 			if answer:
 				self.privmsg(self.channel, "%s %s %s" % (nick, self.response, answer))
