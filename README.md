@@ -28,7 +28,7 @@ If there is one or more answers in the file, imouto will message the channel a r
 ----------
 To start the bot, type
 ```
-python3 Imouto.py server[:port] #channel nick [configpath]
+$ python3 Imouto.py server[:port] #channel nick [configpath]
 ```
 
 You will probably need to espace the *"#"* char.
