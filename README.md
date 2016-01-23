@@ -47,6 +47,6 @@ For more information about how the commands work, check the code or msg the bot
 
 ## Requirements
 ----------
-https://bitbucket.org/jaraco/irc
+https://github.com/jaraco/irc
 
 Python3 or higher
