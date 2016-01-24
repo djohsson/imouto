@@ -31,7 +31,7 @@ To start the bot, type
 $ python3 Imouto.py server[:port] #channel nick [configpath]
 ```
 
-You will probably need to espace the *"#"* char.
+You will probably need to escape the *"#"* char.
 Check the exampleconfig.ini to see how the config is to be used.
 
 After the bot is up and running for the first time, type
