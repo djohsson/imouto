@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import re
+
 class User:
 
 	global time, iohandler
@@ -49,7 +51,8 @@ class User:
 
 	def addanswer(self, hour, msg):
 		inth = int(hour)
-		if(len(msg) > 1 and inth < 24 and inth >= 0):
+		msgislink = re.search(r'https?:\/\/', msg)
+		if(len(msg) > 1 and inth < 24 and inth >= 0 and not msgislink):
 			self.lastmsg = msg
 			self.lastfile = str(hour)
 			return iohandler.addlinetofile(self.path, hour, msg)
