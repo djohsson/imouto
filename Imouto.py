@@ -10,7 +10,7 @@ import lib.User as User
 
 class Imouto(irc.bot.SingleServerIRCBot):
     def __init__(self, channel, nickname, server, configpath, port=6667):
-        irc.bot.SingleServerIRCBot.__init__(self, [(server, port)], nickname, nickname, recon=irc.bot.ExponentialBackoff())
+        irc.bot.SingleServerIRCBot.__init__(self, [(server, port)], nickname, nickname)
         self.channel = channel
         self.authedhosts = {}
         self.ignoredhosts = {}
