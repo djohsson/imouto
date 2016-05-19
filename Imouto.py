@@ -104,7 +104,6 @@ class Imouto(irc.bot.SingleServerIRCBot):
             for s in result:
                 self.privmsg(nick, s)
         elif cmd != "disconnect" and cmd != "die":
-            print("NU SKRIVER JAG")
             self.privmsg(nick, result)
 
     def privmsg(self, dest, msg):
