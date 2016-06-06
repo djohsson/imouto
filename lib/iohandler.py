@@ -3,19 +3,6 @@
 
 import configparser
 import os
-import lib.seeder as seeder
-
-def getline(path, hour):
-    f = open(path + str(hour) + ".txt", "r")
-    lines = f.read().splitlines()
-    f.close()
-    length = len(lines) + 1
-    answer = ""
-
-    if(length > 1):
-        rand = int(seeder.pseudorand(length))
-        answer = lines[rand]
-    return answer
 
 
 def getall_lines(path, hour):
