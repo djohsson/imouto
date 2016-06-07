@@ -24,6 +24,7 @@ class Imouto(irc.bot.SingleServerIRCBot):
         self.answerreply = ""
         self.configpath = configpath
         self.readconfig()
+        self.connection.set_keepalive(60)
 
 ############################## Methods called by the irc module on events #######################
     def on_nicknameinuse(self, c, e):
@@ -53,6 +54,10 @@ class Imouto(irc.bot.SingleServerIRCBot):
 
     def on_dccchat(self, c, e):
         return
+
+
+    def on_disconnect(self, c, e):
+        self.recon.run(self)
 #################################################################################################
 
     def do_command(self, e, cmd):

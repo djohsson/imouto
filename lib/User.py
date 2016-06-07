@@ -44,6 +44,7 @@ class User:
 
 
     def getanswer(self, hour):
+        hour = int(hour)
         length = len(self.answers[hour])
         answer = ""
         if length > 0:
@@ -52,14 +53,15 @@ class User:
 
 
     def getallanswers(self, hour):
+        hour = int(hour)
         answers = self.answers[hour]
         return answers
 
 
     def addanswer(self, hour, msg):
-        inth = int(hour)
+        hour = int(hour)
         msgislink = re.search(r'https?:\/\/', msg)
-        if(len(msg) > 1 and inth < 24 and inth >= 0 and not msgislink):
+        if(len(msg) > 1 and hour < 24 and hour >= 0 and not msgislink):
             self.lastmsg = msg
             self.lasthour = str(hour)
             self.answers[hour].append(msg)
@@ -76,7 +78,11 @@ class User:
 
 
     def removeanswer(self, hour, msg):
-        self.answers[hour].remove(msg)
+        hour = int(hour)
+        try:
+            self.answers[hour].remove(msg)
+        except:
+            print("Tried removing answer not in list")
         return iohandler.removeline(self.path, hour, msg)
 
 
